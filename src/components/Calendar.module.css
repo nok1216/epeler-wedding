@@ -1,0 +1,103 @@
+.wrapper {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 16px 24px;
+}
+
+.monthLabel {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.dayHeader {
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  padding-bottom: 8px;
+}
+
+.cell {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background 0.15s;
+  gap: 1px;
+  overflow: hidden;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  background: var(--color-accent-light);
+}
+
+.dayNum {
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.badge {
+  font-size: 0.6rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.memo {
+  display: none; /* カレンダー表示では非表示、管理者ページで使う */
+}
+
+/* ステータス色 */
+.cell.available {
+  background: #f0f5f0;
+}
+.cell.available .dayNum { color: var(--color-available); }
+.badge.available { color: var(--color-available); }
+
+.cell.partial {
+  background: #f5f0ea;
+}
+.cell.partial .dayNum { color: var(--color-partial); }
+.badge.partial { color: var(--color-partial); }
+
+.cell.full {
+  background: #f5eded;
+}
+.cell.full .dayNum { color: var(--color-full); }
+.badge.full { color: var(--color-full); }
+
+/* 選択中 */
+.cell.selected {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+  background: var(--color-accent-light) !important;
+}
+
+/* 過去日 */
+.cell.past {
+  opacity: 0.35;
+}
+
+/* 日曜・土曜 */
+.dayHeader.sun, .cell.sun .dayNum { color: #b06060; }
+.dayHeader.sat, .cell.sat .dayNum { color: #6070a0; }

@@ -1,0 +1,28 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #06C755;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  padding: 14px 28px;
+  border-radius: 50px;
+  box-shadow: 0 4px 16px rgba(6,199,85,0.25);
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+
+.btn:hover, .btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(6,199,85,0.35);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}

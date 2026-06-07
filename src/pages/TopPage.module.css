@@ -1,0 +1,115 @@
+.main {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 16px 80px;
+}
+
+/* ── Hero ── */
+.hero {
+  text-align: center;
+  padding: 40px 0 24px;
+}
+
+.heroSub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: var(--color-accent);
+  margin-bottom: 6px;
+}
+
+.heroTitle {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--color-text);
+}
+
+/* ── Legend ── */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legendDot {
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.legendText {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  font-weight: 300;
+}
+
+/* ── Calendars ── */
+.calendars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* ── Selected card ── */
+.selectedCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.selectedLabel {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+  letter-spacing: 0.06em;
+}
+
+.selectedStatus {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+.selectedStatus[data-status="available"] { color: var(--color-available); }
+.selectedStatus[data-status="partial"]   { color: var(--color-partial); }
+.selectedStatus[data-status="full"]      { color: var(--color-full); }
+
+.selectedMemo {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+/* ── LINE section ── */
+.lineSection {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.lineNote {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  margin-bottom: 20px;
+  padding: 0 8px;
+  border-left: 2px solid var(--color-border);
+  text-align: left;
+}
+
+.lineSection a {
+  display: inline-flex;
+}
