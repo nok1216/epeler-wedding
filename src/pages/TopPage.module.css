@@ -10,13 +10,17 @@
   padding: 40px 0 24px;
 }
 
+.heroBg { display: none; }
+.heroContent { display: contents; }
+
 .heroSub {
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 0.75rem;
   letter-spacing: 0.18em;
-  color: var(--color-accent);
+  color: rgba(255,255,255,0.9);
   margin-bottom: 6px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
 }
 
 .heroTitle {
@@ -24,7 +28,8 @@
   font-size: 1.1rem;
   font-weight: 300;
   letter-spacing: 0.2em;
-  color: var(--color-text);
+  color: #ffffff;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
 }
 
 /* ── Legend ── */
@@ -48,8 +53,13 @@
 
 .legendText {
   font-size: 0.7rem;
-  color: var(--color-text-muted);
+  color: rgba(255,255,255,0.9);
   font-weight: 300;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.legendDot {
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 /* ── Calendars ── */
@@ -105,9 +115,13 @@
   color: var(--color-text-muted);
   line-height: 1.8;
   margin-bottom: 20px;
-  padding: 0 8px;
+  padding: 10px 12px;
   border-left: 2px solid var(--color-border);
   text-align: left;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 0 8px 8px 0;
 }
 
 .lineSection a {

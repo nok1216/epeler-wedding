@@ -35,6 +35,14 @@ body {
   min-height: 100dvh;
 }
 
+/* トップページ背景写真 */
+body.has-hero-bg {
+  background-image: url('/hero.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center 30%;
+}
+
 a {
   color: inherit;
   text-decoration: none;

@@ -16,6 +16,12 @@ export default function TopPage() {
   const { data } = useSchedule()
   const [selectedDate, setSelectedDate] = useState(null)
 
+  // ページ全体に背景写真を適用
+  useState(() => {
+    document.body.classList.add('has-hero-bg')
+    return () => document.body.classList.remove('has-hero-bg')
+  })
+
   const now = new Date()
   const thisYear = now.getFullYear()
   const thisMonth = now.getMonth()
@@ -41,8 +47,11 @@ export default function TopPage() {
   return (
     <main className={styles.main}>
       <section className={styles.hero}>
-        <p className={styles.heroSub}>availability calendar</p>
-        <h1 className={styles.heroTitle}>空き日程のご確認</h1>
+        <div className={styles.heroBg} />
+        <div className={styles.heroContent}>
+          <p className={styles.heroSub}>availability calendar</p>
+          <h1 className={styles.heroTitle}>空き日程のご確認</h1>
+        </div>
       </section>
 
       <section className={styles.legend}>

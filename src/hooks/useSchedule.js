@@ -1,8 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
+import {
+  collection, doc, onSnapshot,
+  setDoc, deleteDoc
+} from 'firebase/firestore'
+import { db } from '../lib/firebase'
 
-const STORAGE_KEY = 'epeler_schedule_v1'
-
-// ステータス定義 — ここを変えるだけでGoogleカレンダー連携に差し替え可能
+// ステータス定義
 export const STATUS = {
   AVAILABLE: 'available',   // ◎ 空きあり
   PARTIAL: 'partial',       // △ 午後のみ / 要相談
@@ -15,47 +18,34 @@ export const STATUS_LABEL = {
   [STATUS.FULL]: '× 予約済み',
 }
 
-function loadFromStorage() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    return raw ? JSON.parse(raw) : {}
-  } catch {
-    return {}
-  }
-}
-
-function saveToStorage(data) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
-}
-
 /**
- * スケジュールデータの読み書きフック。
+ * Firestoreからスケジュールデータをリアルタイム取得・更新するフック。
  * data: { 'YYYY-MM-DD': { status: STATUS, memo: string } }
- *
- * TODO: Googleカレンダー連携時はここの load/save を
- *       API呼び出しに差し替える。
  */
 export function useSchedule() {
-  const [data, setData] = useState(loadFromStorage)
+  const [data, setData] = useState({})
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    saveToStorage(data)
-  }, [data])
-
-  const setDay = useCallback((dateKey, status, memo = '') => {
-    setData(prev => ({
-      ...prev,
-      [dateKey]: { status, memo },
-    }))
-  }, [])
-
-  const removeDay = useCallback((dateKey) => {
-    setData(prev => {
-      const next = { ...prev }
-      delete next[dateKey]
-      return next
+    // Firestoreのscheduleコレクションをリアルタイム監視
+    const unsub = onSnapshot(collection(db, 'schedule'), (snapshot) => {
+      const next = {}
+      snapshot.forEach(doc => {
+        next[doc.id] = doc.data()
+      })
+      setData(next)
+      setLoading(false)
     })
+    return () => unsub()
   }, [])
 
-  return { data, setDay, removeDay }
+  const setDay = useCallback(async (dateKey, status, memo = '') => {
+    await setDoc(doc(db, 'schedule', dateKey), { status, memo })
+  }, [])
+
+  const removeDay = useCallback(async (dateKey) => {
+    await deleteDoc(doc(db, 'schedule', dateKey))
+  }, [])
+
+  return { data, setDay, removeDay, loading }
 }
